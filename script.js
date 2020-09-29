@@ -22,6 +22,8 @@ function addBookToLibrary() {
 
   myLibrary.push(new Book(title, author, pages, read))
   form.reset()
+  form.style.display='none';
+  button.style.display = 'block'
   showBooks();
 }
 
@@ -81,7 +83,8 @@ let button = document.getElementById('button');
 button.onclick = function() {
 
     if (form.style.display !== 'none') {
-        form.style.display = 'none';
+        form.style.display = 'block';
+        button.style.display='none'
     }
     else {
         form.style.display = 'block';
