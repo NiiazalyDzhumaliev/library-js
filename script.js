@@ -1,63 +1,40 @@
-let myLibrary = [];
+const myLibrary = [];
+const form = document.getElementById('form');
+const changeReadStatus = (book) => {
+  book.read = !book.read;
+};
+const button = document.getElementById('button');
 
 function Book(title, author, pages, read) {
-  this.title = title,
+  this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.info = () => {
-  	return `${this.title} written by ${this.author}, ${this.pages} ${this.read ? 'read' : 'unread'}`
-  }
-
+  this.info = () => `${this.title} written by ${this.author}, ${this.pages} ${this.read ? 'read' : 'unread'}`;
 }
-const changeReadStatus = function (book) {
-    book.read = !book.read;
-  };
-
-function addBookToLibrary() {
-  const title = document.getElementById('title').value;
-  const author = document.getElementById('author').value;
-  const pages = document.getElementById('pages').value;
-  const read = document.getElementById('read').checked;
-
-  myLibrary.push(new Book(title, author, pages, read))
-  form.reset()
-  form.style.display='none';
-  button.style.display = 'block'
-  showBooks();
-}
-
-const form = document.getElementById('form')
-
-function submitForm (event){
-	event.preventDefault()
-}
-
-form.addEventListener('submit', addBookToLibrary)
-form.addEventListener('submit', submitForm)
 
 function showBooks() {
-  ol = document.querySelector("ol");
-  ol.innerHTML = "";
+  const ol = document.querySelector('ol');
+  ol.innerHTML = '';
 
   myLibrary.forEach((book, index) => {
-    li = document.createElement("li");
+    let li = document.createElement('li');
     li.book = book;
     li.bookIndex = index;
 
-    p = document.createElement("p");
+    const p = document.createElement('p');
     p.innerHTML = li.book.info();
     li.appendChild(p);
 
     // create buttons to change the status and delete book
-    changeButton = document.createElement('button');
-    deleteButton  = document.createElement('button')
+    const changeButton = document.createElement('button');
+    const deleteButton = document.createElement('button');
 
     changeButton.innerHTML = 'Change Read status';
     deleteButton.innerHTML = 'Delete Book?';
 
     changeButton.classList.add('change-btn');
-    deleteButton.classList.add('delete-btn')
+    deleteButton.classList.add('delete-btn');
 
     li.appendChild(changeButton);
     li.appendChild(deleteButton);
@@ -78,16 +55,34 @@ function showBooks() {
   });
 }
 
-let button = document.getElementById('button');
+function addBookToLibrary() {
+  const title = document.getElementById('title').value;
+  const author = document.getElementById('author').value;
+  const pages = document.getElementById('pages').value;
+  const read = document.getElementById('read').checked;
 
-button.onclick = function() {
+  myLibrary.push(new Book(title, author, pages, read));
+  form.reset();
+  form.style.display = 'none';
+  button.style.display = 'block';
+  showBooks();
+}
 
-    if (form.style.display !== 'none') {
-        form.style.display = 'block';
-        button.style.display='none'
-    }
-    else {
-        form.style.display = 'block';
-        button.style.display = 'none';
-    }
+
+function submitForm(event) {
+  event.preventDefault();
+}
+
+form.addEventListener('submit', addBookToLibrary);
+form.addEventListener('submit', submitForm);
+
+
+button.onclick = () => {
+  if (form.style.display !== 'none') {
+    form.style.display = 'block';
+    button.style.display = 'none';
+  } else {
+    form.style.display = 'block';
+    button.style.display = 'none';
+  }
 };

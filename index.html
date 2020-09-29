@@ -10,14 +10,14 @@
     <button type="button" id="button" value="Add new book">Add new book</button>
     <form id="form" name="insert">
       <label for="booktitle">Book title:</label><br />
-      <input type="text" id="title" name="title" /><br />
+      <input type="text" id="title" name="title" required /><br />
       <label for="author">Author:</label><br />
-      <input type="text" id="author" name="author" /><br />
+      <input type="text" id="author" name="author" required /><br />
       <label for="pages">Pages:</label><br />
-      <input type="text" id="pages" name="pages" /><br />
-      <input type="radio" id="read" name="read" value="read" />
+      <input type="number" id="pages" name="pages" required /><br />
+      <input type="radio" id="read" name="read" value="read" required />
       <label for="read">Read</label><br />
-      <input type="radio" id="read" name="read" value="unread" />
+      <input type="radio" id="read" name="read" value="unread" required />
       <label for="unread">Unread</label><br />
       <input type="submit" value="Submit" />
     </form>
