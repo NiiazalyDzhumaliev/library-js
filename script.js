@@ -10,10 +10,10 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.info = () => `${this.title} written by ${this.author}, ${this.pages} ${this.read ? 'read' : 'unread'}`;
+  this.info = () => `${this.title} written by ${this.author}, ${this.pages} pages ${this.read ? 'read' : 'unread'}`;
 }
 
-function showBooks() {
+const showBooks = () => {
   const ol = document.querySelector('ol');
   ol.innerHTML = '';
 
@@ -55,7 +55,7 @@ function showBooks() {
   });
 }
 
-function addBookToLibrary() {
+const addBookToLibrary = () => {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
   const pages = document.getElementById('pages').value;
@@ -69,7 +69,7 @@ function addBookToLibrary() {
 }
 
 
-function submitForm(event) {
+const submitForm = (event) => {
   event.preventDefault();
 }
 
