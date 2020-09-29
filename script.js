@@ -10,9 +10,10 @@ function Book(title, author, pages, read) {
   }
 
 }
-changeReadStatus = function (book) {
+const changeReadStatus = function (book) {
     book.read = !book.read;
   };
+
 function addBookToLibrary() {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
@@ -34,8 +35,8 @@ form.addEventListener('submit', addBookToLibrary)
 form.addEventListener('submit', submitForm)
 
 function showBooks() {
-  ul = document.querySelector("ol");
-  ul.innerHTML = "";
+  ol = document.querySelector("ol");
+  ol.innerHTML = "";
 
   myLibrary.forEach((book, index) => {
     li = document.createElement("li");
@@ -71,8 +72,19 @@ function showBooks() {
       showBooks();
     };
 
-    ul.appendChild(li);
+    ol.appendChild(li);
   });
 }
 
+let button = document.getElementById('button');
 
+button.onclick = function() {
+
+    if (form.style.display !== 'none') {
+        form.style.display = 'none';
+    }
+    else {
+        form.style.display = 'block';
+        button.style.display = 'none';
+    }
+};

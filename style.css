@@ -3,7 +3,7 @@ body{
 	justify-content: space-around;
 }
 #form{
-
+	display:none;
 }
 
 ul{
