@@ -1,1 +1,15 @@
+body{
+	display: flex;
+	justify-content: space-around;
+}
+#form{
 
+}
+
+ul{
+	display: flex;
+	flex-direction: column;
+}
+ul li{
+	list-style: none;
+}
