@@ -53,7 +53,7 @@ const showBooks = () => {
 
     ol.appendChild(li);
   });
-}
+};
 
 const addBookToLibrary = () => {
   const title = document.getElementById('title').value;
@@ -66,12 +66,12 @@ const addBookToLibrary = () => {
   form.style.display = 'none';
   button.style.display = 'block';
   showBooks();
-}
+};
 
 
 const submitForm = (event) => {
   event.preventDefault();
-}
+};
 
 form.addEventListener('submit', addBookToLibrary);
 form.addEventListener('submit', submitForm);
