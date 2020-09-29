@@ -8,11 +8,11 @@ function Book(title, author, pages, read) {
   this.info = () => {
   	return `${this.title} written by ${this.author}, ${this.pages} ${this.read ? 'read' : 'unread'}`
   }
-  this.changeReadStatus = function () {
-    this.read = !this.read;
-  };
-}
 
+}
+changeReadStatus = function (book) {
+    book.read = !book.read;
+  };
 function addBookToLibrary() {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
@@ -34,23 +34,45 @@ form.addEventListener('submit', addBookToLibrary)
 form.addEventListener('submit', submitForm)
 
 function showBooks() {
-  ul = document.querySelector("ul");
+  ul = document.querySelector("ol");
   ul.innerHTML = "";
 
-  myLibrary.forEach((book) => {
+  myLibrary.forEach((book, index) => {
     li = document.createElement("li");
     li.book = book;
-    // li.arrayIndex = index;
+    li.bookIndex = index;
 
     p = document.createElement("p");
     p.innerHTML = li.book.info();
     li.appendChild(p);
+
+    // create buttons to change the status and delete book
+    changeButton = document.createElement('button');
+    deleteButton  = document.createElement('button')
+
+    changeButton.innerHTML = 'Change Read status';
+    deleteButton.innerHTML = 'Delete Book?';
+
+    changeButton.classList.add('change-btn');
+    deleteButton.classList.add('delete-btn')
+
+    li.appendChild(changeButton);
+    li.appendChild(deleteButton);
+
+    changeButton.onclick = (self) => {
+      li = self.target.parentElement;
+      changeReadStatus(li.book);
+      showBooks();
+    };
+
+    deleteButton.onclick = (self) => {
+      li = self.target.parentElement;
+      myLibrary.splice(index, 1);
+      showBooks();
+    };
+
     ul.appendChild(li);
   });
 }
 
-function removeBookFromLibrary(index) {
-	myLibrary.splice(index, 1);
-	showBooks()
-}
 
